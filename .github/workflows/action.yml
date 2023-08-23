@@ -2,11 +2,9 @@ name: Full Pipeline
 
 on:
   push:
-    branches:
-      - main  # Adjust to your default branch
+    branches: [ build ] # Adjust to your default branch
   pull_request:
-    branches:
-      - main  # Adjust to your default branch
+    branches: [ build ]  # Adjust to your default branch
 
 jobs:
   build:

@@ -1,0 +1,32 @@
+name: pull request trigger
+
+on:
+  pull_request:
+   types:
+     - opened
+     - synchronize
+     - closed
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # This checks out your repository code
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Linter (ESLint)
+        run: npm run lint
+        
+      - name: Formatter (Prettier)
+        run: npm run prettier
+        
+      - name: Test (Jest)
+        run: |
+          export CI=true
+          npm run test
+          
+      - name: Build
+        run: npm run build
